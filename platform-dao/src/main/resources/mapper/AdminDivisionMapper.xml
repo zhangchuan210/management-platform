@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.cdboost.dao.AdminDivisionMapper">
+  <resultMap id="BaseResultMap" type="cn.com.cdboost.model.AdminDivision">
+    <id column="ad_no" jdbcType="INTEGER" property="adNo" />
+    <result column="ad_name" jdbcType="VARCHAR" property="adName" />
+    <result column="p_ad_no" jdbcType="INTEGER" property="pAdNo" />
+    <result column="ad_level" jdbcType="INTEGER" property="adLevel" />
+    <result column="ad_path" jdbcType="VARCHAR" property="adPath" />
+    <result column="first_pinyin" jdbcType="VARCHAR" property="firstPinyin" />
+    <result column="full_pinyin" jdbcType="VARCHAR" property="fullPinyin" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ad_no, ad_name, p_ad_no, ad_level, ad_path, first_pinyin, full_pinyin, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from l_b_admindivision
+    where ad_no = #{adNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from l_b_admindivision
+    where ad_no = #{adNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.cdboost.model.AdminDivision">
+    insert into l_b_admindivision (ad_no, ad_name, p_ad_no, 
+      ad_level, ad_path, first_pinyin, 
+      full_pinyin, create_time)
+    values (#{adNo,jdbcType=INTEGER}, #{adName,jdbcType=VARCHAR}, #{pAdNo,jdbcType=INTEGER}, 
+      #{adLevel,jdbcType=INTEGER}, #{adPath,jdbcType=VARCHAR}, #{firstPinyin,jdbcType=VARCHAR}, 
+      #{fullPinyin,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.cdboost.model.AdminDivision">
+    insert into l_b_admindivision
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adNo != null">
+        ad_no,
+      </if>
+      <if test="adName != null">
+        ad_name,
+      </if>
+      <if test="pAdNo != null">
+        p_ad_no,
+      </if>
+      <if test="adLevel != null">
+        ad_level,
+      </if>
+      <if test="adPath != null">
+        ad_path,
+      </if>
+      <if test="firstPinyin != null">
+        first_pinyin,
+      </if>
+      <if test="fullPinyin != null">
+        full_pinyin,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adNo != null">
+        #{adNo,jdbcType=INTEGER},
+      </if>
+      <if test="adName != null">
+        #{adName,jdbcType=VARCHAR},
+      </if>
+      <if test="pAdNo != null">
+        #{pAdNo,jdbcType=INTEGER},
+      </if>
+      <if test="adLevel != null">
+        #{adLevel,jdbcType=INTEGER},
+      </if>
+      <if test="adPath != null">
+        #{adPath,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPinyin != null">
+        #{firstPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="fullPinyin != null">
+        #{fullPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.cdboost.model.AdminDivision">
+    update l_b_admindivision
+    <set>
+      <if test="adName != null">
+        ad_name = #{adName,jdbcType=VARCHAR},
+      </if>
+      <if test="pAdNo != null">
+        p_ad_no = #{pAdNo,jdbcType=INTEGER},
+      </if>
+      <if test="adLevel != null">
+        ad_level = #{adLevel,jdbcType=INTEGER},
+      </if>
+      <if test="adPath != null">
+        ad_path = #{adPath,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPinyin != null">
+        first_pinyin = #{firstPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="fullPinyin != null">
+        full_pinyin = #{fullPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ad_no = #{adNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.cdboost.model.AdminDivision">
+    update l_b_admindivision
+    set ad_name = #{adName,jdbcType=VARCHAR},
+      p_ad_no = #{pAdNo,jdbcType=INTEGER},
+      ad_level = #{adLevel,jdbcType=INTEGER},
+      ad_path = #{adPath,jdbcType=VARCHAR},
+      first_pinyin = #{firstPinyin,jdbcType=VARCHAR},
+      full_pinyin = #{fullPinyin,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where ad_no = #{adNo,jdbcType=INTEGER}
+  </update>
+</mapper>

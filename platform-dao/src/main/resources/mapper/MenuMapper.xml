@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.cdboost.dao.MenuMapper">
+  <resultMap id="BaseResultMap" type="cn.com.cdboost.model.Menu">
+    <id column="menu_id" jdbcType="BIGINT" property="menuId" />
+    <result column="menu_title" jdbcType="VARCHAR" property="menuTitle" />
+    <result column="p_menu_id" jdbcType="BIGINT" property="pMenuId" />
+    <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="is_last" jdbcType="INTEGER" property="isLast" />
+    <result column="sort_no" jdbcType="INTEGER" property="sortNo" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="is_enabled" jdbcType="INTEGER" property="isEnabled" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    menu_id, menu_title, p_menu_id, menu_icon, menu_url, is_last, sort_no, create_time, 
+    create_user_id, is_enabled, description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from l_b_menu
+    where menu_id = #{menuId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from l_b_menu
+    where menu_id = #{menuId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.com.cdboost.model.Menu">
+    insert into l_b_menu (menu_id, menu_title, p_menu_id, 
+      menu_icon, menu_url, is_last, 
+      sort_no, create_time, create_user_id, 
+      is_enabled, description)
+    values (#{menuId,jdbcType=BIGINT}, #{menuTitle,jdbcType=VARCHAR}, #{pMenuId,jdbcType=BIGINT}, 
+      #{menuIcon,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, #{isLast,jdbcType=INTEGER}, 
+      #{sortNo,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=BIGINT}, 
+      #{isEnabled,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.cdboost.model.Menu">
+    insert into l_b_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="menuId != null">
+        menu_id,
+      </if>
+      <if test="menuTitle != null">
+        menu_title,
+      </if>
+      <if test="pMenuId != null">
+        p_menu_id,
+      </if>
+      <if test="menuIcon != null">
+        menu_icon,
+      </if>
+      <if test="menuUrl != null">
+        menu_url,
+      </if>
+      <if test="isLast != null">
+        is_last,
+      </if>
+      <if test="sortNo != null">
+        sort_no,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="isEnabled != null">
+        is_enabled,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="menuId != null">
+        #{menuId,jdbcType=BIGINT},
+      </if>
+      <if test="menuTitle != null">
+        #{menuTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pMenuId != null">
+        #{pMenuId,jdbcType=BIGINT},
+      </if>
+      <if test="menuIcon != null">
+        #{menuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null">
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isLast != null">
+        #{isLast,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="isEnabled != null">
+        #{isEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.cdboost.model.Menu">
+    update l_b_menu
+    <set>
+      <if test="menuTitle != null">
+        menu_title = #{menuTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pMenuId != null">
+        p_menu_id = #{pMenuId,jdbcType=BIGINT},
+      </if>
+      <if test="menuIcon != null">
+        menu_icon = #{menuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null">
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isLast != null">
+        is_last = #{isLast,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null">
+        sort_no = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="isEnabled != null">
+        is_enabled = #{isEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where menu_id = #{menuId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.cdboost.model.Menu">
+    update l_b_menu
+    set menu_title = #{menuTitle,jdbcType=VARCHAR},
+      p_menu_id = #{pMenuId,jdbcType=BIGINT},
+      menu_icon = #{menuIcon,jdbcType=VARCHAR},
+      menu_url = #{menuUrl,jdbcType=VARCHAR},
+      is_last = #{isLast,jdbcType=INTEGER},
+      sort_no = #{sortNo,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      is_enabled = #{isEnabled,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR}
+    where menu_id = #{menuId,jdbcType=BIGINT}
+  </update>
+</mapper>

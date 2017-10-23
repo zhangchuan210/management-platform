@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.cdboost.dao.MoteHisMapper">
+  <resultMap id="BaseResultMap" type="cn.com.cdboost.model.MoteHis">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="mote_eui" jdbcType="VARCHAR" property="moteEui" />
+    <result column="app_eui" jdbcType="CHAR" property="appEui" />
+    <result column="mote_lw_addr" jdbcType="VARCHAR" property="moteLwAddr" />
+    <result column="org_no" jdbcType="BIGINT" property="orgNo" />
+    <result column="mote_name" jdbcType="VARCHAR" property="moteName" />
+    <result column="mote_model" jdbcType="VARCHAR" property="moteModel" />
+    <result column="software_ver" jdbcType="VARCHAR" property="softwareVer" />
+    <result column="hardware_ver" jdbcType="VARCHAR" property="hardwareVer" />
+    <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer" />
+    <result column="mote_type" jdbcType="CHAR" property="moteType" />
+    <result column="app_key" jdbcType="VARCHAR" property="appKey" />
+    <result column="nws_key" jdbcType="VARCHAR" property="nwsKey" />
+    <result column="apps_key" jdbcType="VARCHAR" property="appsKey" />
+    <result column="mote_nonce" jdbcType="BIGINT" property="moteNonce" />
+    <result column="ism_band" jdbcType="VARCHAR" property="ismBand" />
+    <result column="lorawan_ver" jdbcType="VARCHAR" property="lorawanVer" />
+    <result column="coord_type" jdbcType="INTEGER" property="coordType" />
+    <result column="lng" jdbcType="DECIMAL" property="lng" />
+    <result column="lat" jdbcType="DECIMAL" property="lat" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="install_addr" jdbcType="VARCHAR" property="installAddr" />
+    <result column="rx_window" jdbcType="VARCHAR" property="rxWindow" />
+    <result column="rx1_droffset" jdbcType="INTEGER" property="rx1Droffset" />
+    <result column="rx_delay" jdbcType="INTEGER" property="rxDelay" />
+    <result column="rx2_dr" jdbcType="INTEGER" property="rx2Dr" />
+    <result column="rx2_frequency" jdbcType="VARCHAR" property="rx2Frequency" />
+    <result column="battery_level" jdbcType="INTEGER" property="batteryLevel" />
+    <result column="is_reg" jdbcType="INTEGER" property="isReg" />
+    <result column="is_online" jdbcType="INTEGER" property="isOnline" />
+    <result column="is_enabled" jdbcType="INTEGER" property="isEnabled" />
+    <result column="last_active_time" jdbcType="TIMESTAMP" property="lastActiveTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_type" jdbcType="INTEGER" property="createType" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="del_time" jdbcType="TIMESTAMP" property="delTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, mote_eui, app_eui, mote_lw_addr, org_no, mote_name, mote_model, software_ver, 
+    hardware_ver, manufacturer, mote_type, app_key, nws_key, apps_key, mote_nonce, ism_band, 
+    lorawan_ver, coord_type, lng, lat, province, city, district, install_addr, rx_window, 
+    rx1_droffset, rx_delay, rx2_dr, rx2_frequency, battery_level, is_reg, is_online, 
+    is_enabled, last_active_time, create_time, create_type, create_user_id, remark, customer_id, 
+    del_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from l_d_mote_his
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from l_d_mote_his
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.com.cdboost.model.MoteHis">
+    insert into l_d_mote_his (ID, mote_eui, app_eui, 
+      mote_lw_addr, org_no, mote_name, 
+      mote_model, software_ver, hardware_ver, 
+      manufacturer, mote_type, app_key, 
+      nws_key, apps_key, mote_nonce, 
+      ism_band, lorawan_ver, coord_type, 
+      lng, lat, province, 
+      city, district, install_addr, 
+      rx_window, rx1_droffset, rx_delay, 
+      rx2_dr, rx2_frequency, battery_level, 
+      is_reg, is_online, is_enabled, 
+      last_active_time, create_time, create_type, 
+      create_user_id, remark, customer_id, 
+      del_time)
+    values (#{id,jdbcType=BIGINT}, #{moteEui,jdbcType=VARCHAR}, #{appEui,jdbcType=CHAR}, 
+      #{moteLwAddr,jdbcType=VARCHAR}, #{orgNo,jdbcType=BIGINT}, #{moteName,jdbcType=VARCHAR}, 
+      #{moteModel,jdbcType=VARCHAR}, #{softwareVer,jdbcType=VARCHAR}, #{hardwareVer,jdbcType=VARCHAR}, 
+      #{manufacturer,jdbcType=VARCHAR}, #{moteType,jdbcType=CHAR}, #{appKey,jdbcType=VARCHAR}, 
+      #{nwsKey,jdbcType=VARCHAR}, #{appsKey,jdbcType=VARCHAR}, #{moteNonce,jdbcType=BIGINT}, 
+      #{ismBand,jdbcType=VARCHAR}, #{lorawanVer,jdbcType=VARCHAR}, #{coordType,jdbcType=INTEGER}, 
+      #{lng,jdbcType=DECIMAL}, #{lat,jdbcType=DECIMAL}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{installAddr,jdbcType=VARCHAR}, 
+      #{rxWindow,jdbcType=VARCHAR}, #{rx1Droffset,jdbcType=INTEGER}, #{rxDelay,jdbcType=INTEGER}, 
+      #{rx2Dr,jdbcType=INTEGER}, #{rx2Frequency,jdbcType=VARCHAR}, #{batteryLevel,jdbcType=INTEGER}, 
+      #{isReg,jdbcType=INTEGER}, #{isOnline,jdbcType=INTEGER}, #{isEnabled,jdbcType=INTEGER}, 
+      #{lastActiveTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{createType,jdbcType=INTEGER}, 
+      #{createUserId,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, 
+      #{delTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.cdboost.model.MoteHis">
+    insert into l_d_mote_his
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="moteEui != null">
+        mote_eui,
+      </if>
+      <if test="appEui != null">
+        app_eui,
+      </if>
+      <if test="moteLwAddr != null">
+        mote_lw_addr,
+      </if>
+      <if test="orgNo != null">
+        org_no,
+      </if>
+      <if test="moteName != null">
+        mote_name,
+      </if>
+      <if test="moteModel != null">
+        mote_model,
+      </if>
+      <if test="softwareVer != null">
+        software_ver,
+      </if>
+      <if test="hardwareVer != null">
+        hardware_ver,
+      </if>
+      <if test="manufacturer != null">
+        manufacturer,
+      </if>
+      <if test="moteType != null">
+        mote_type,
+      </if>
+      <if test="appKey != null">
+        app_key,
+      </if>
+      <if test="nwsKey != null">
+        nws_key,
+      </if>
+      <if test="appsKey != null">
+        apps_key,
+      </if>
+      <if test="moteNonce != null">
+        mote_nonce,
+      </if>
+      <if test="ismBand != null">
+        ism_band,
+      </if>
+      <if test="lorawanVer != null">
+        lorawan_ver,
+      </if>
+      <if test="coordType != null">
+        coord_type,
+      </if>
+      <if test="lng != null">
+        lng,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="installAddr != null">
+        install_addr,
+      </if>
+      <if test="rxWindow != null">
+        rx_window,
+      </if>
+      <if test="rx1Droffset != null">
+        rx1_droffset,
+      </if>
+      <if test="rxDelay != null">
+        rx_delay,
+      </if>
+      <if test="rx2Dr != null">
+        rx2_dr,
+      </if>
+      <if test="rx2Frequency != null">
+        rx2_frequency,
+      </if>
+      <if test="batteryLevel != null">
+        battery_level,
+      </if>
+      <if test="isReg != null">
+        is_reg,
+      </if>
+      <if test="isOnline != null">
+        is_online,
+      </if>
+      <if test="isEnabled != null">
+        is_enabled,
+      </if>
+      <if test="lastActiveTime != null">
+        last_active_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createType != null">
+        create_type,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="delTime != null">
+        del_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="moteEui != null">
+        #{moteEui,jdbcType=VARCHAR},
+      </if>
+      <if test="appEui != null">
+        #{appEui,jdbcType=CHAR},
+      </if>
+      <if test="moteLwAddr != null">
+        #{moteLwAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null">
+        #{orgNo,jdbcType=BIGINT},
+      </if>
+      <if test="moteName != null">
+        #{moteName,jdbcType=VARCHAR},
+      </if>
+      <if test="moteModel != null">
+        #{moteModel,jdbcType=VARCHAR},
+      </if>
+      <if test="softwareVer != null">
+        #{softwareVer,jdbcType=VARCHAR},
+      </if>
+      <if test="hardwareVer != null">
+        #{hardwareVer,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="moteType != null">
+        #{moteType,jdbcType=CHAR},
+      </if>
+      <if test="appKey != null">
+        #{appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="nwsKey != null">
+        #{nwsKey,jdbcType=VARCHAR},
+      </if>
+      <if test="appsKey != null">
+        #{appsKey,jdbcType=VARCHAR},
+      </if>
+      <if test="moteNonce != null">
+        #{moteNonce,jdbcType=BIGINT},
+      </if>
+      <if test="ismBand != null">
+        #{ismBand,jdbcType=VARCHAR},
+      </if>
+      <if test="lorawanVer != null">
+        #{lorawanVer,jdbcType=VARCHAR},
+      </if>
+      <if test="coordType != null">
+        #{coordType,jdbcType=INTEGER},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=DECIMAL},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=DECIMAL},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="installAddr != null">
+        #{installAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="rxWindow != null">
+        #{rxWindow,jdbcType=VARCHAR},
+      </if>
+      <if test="rx1Droffset != null">
+        #{rx1Droffset,jdbcType=INTEGER},
+      </if>
+      <if test="rxDelay != null">
+        #{rxDelay,jdbcType=INTEGER},
+      </if>
+      <if test="rx2Dr != null">
+        #{rx2Dr,jdbcType=INTEGER},
+      </if>
+      <if test="rx2Frequency != null">
+        #{rx2Frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="batteryLevel != null">
+        #{batteryLevel,jdbcType=INTEGER},
+      </if>
+      <if test="isReg != null">
+        #{isReg,jdbcType=INTEGER},
+      </if>
+      <if test="isOnline != null">
+        #{isOnline,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null">
+        #{isEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="lastActiveTime != null">
+        #{lastActiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createType != null">
+        #{createType,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="delTime != null">
+        #{delTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.cdboost.model.MoteHis">
+    update l_d_mote_his
+    <set>
+      <if test="moteEui != null">
+        mote_eui = #{moteEui,jdbcType=VARCHAR},
+      </if>
+      <if test="appEui != null">
+        app_eui = #{appEui,jdbcType=CHAR},
+      </if>
+      <if test="moteLwAddr != null">
+        mote_lw_addr = #{moteLwAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null">
+        org_no = #{orgNo,jdbcType=BIGINT},
+      </if>
+      <if test="moteName != null">
+        mote_name = #{moteName,jdbcType=VARCHAR},
+      </if>
+      <if test="moteModel != null">
+        mote_model = #{moteModel,jdbcType=VARCHAR},
+      </if>
+      <if test="softwareVer != null">
+        software_ver = #{softwareVer,jdbcType=VARCHAR},
+      </if>
+      <if test="hardwareVer != null">
+        hardware_ver = #{hardwareVer,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="moteType != null">
+        mote_type = #{moteType,jdbcType=CHAR},
+      </if>
+      <if test="appKey != null">
+        app_key = #{appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="nwsKey != null">
+        nws_key = #{nwsKey,jdbcType=VARCHAR},
+      </if>
+      <if test="appsKey != null">
+        apps_key = #{appsKey,jdbcType=VARCHAR},
+      </if>
+      <if test="moteNonce != null">
+        mote_nonce = #{moteNonce,jdbcType=BIGINT},
+      </if>
+      <if test="ismBand != null">
+        ism_band = #{ismBand,jdbcType=VARCHAR},
+      </if>
+      <if test="lorawanVer != null">
+        lorawan_ver = #{lorawanVer,jdbcType=VARCHAR},
+      </if>
+      <if test="coordType != null">
+        coord_type = #{coordType,jdbcType=INTEGER},
+      </if>
+      <if test="lng != null">
+        lng = #{lng,jdbcType=DECIMAL},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=DECIMAL},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="installAddr != null">
+        install_addr = #{installAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="rxWindow != null">
+        rx_window = #{rxWindow,jdbcType=VARCHAR},
+      </if>
+      <if test="rx1Droffset != null">
+        rx1_droffset = #{rx1Droffset,jdbcType=INTEGER},
+      </if>
+      <if test="rxDelay != null">
+        rx_delay = #{rxDelay,jdbcType=INTEGER},
+      </if>
+      <if test="rx2Dr != null">
+        rx2_dr = #{rx2Dr,jdbcType=INTEGER},
+      </if>
+      <if test="rx2Frequency != null">
+        rx2_frequency = #{rx2Frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="batteryLevel != null">
+        battery_level = #{batteryLevel,jdbcType=INTEGER},
+      </if>
+      <if test="isReg != null">
+        is_reg = #{isReg,jdbcType=INTEGER},
+      </if>
+      <if test="isOnline != null">
+        is_online = #{isOnline,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null">
+        is_enabled = #{isEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="lastActiveTime != null">
+        last_active_time = #{lastActiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createType != null">
+        create_type = #{createType,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="delTime != null">
+        del_time = #{delTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.cdboost.model.MoteHis">
+    update l_d_mote_his
+    set mote_eui = #{moteEui,jdbcType=VARCHAR},
+      app_eui = #{appEui,jdbcType=CHAR},
+      mote_lw_addr = #{moteLwAddr,jdbcType=VARCHAR},
+      org_no = #{orgNo,jdbcType=BIGINT},
+      mote_name = #{moteName,jdbcType=VARCHAR},
+      mote_model = #{moteModel,jdbcType=VARCHAR},
+      software_ver = #{softwareVer,jdbcType=VARCHAR},
+      hardware_ver = #{hardwareVer,jdbcType=VARCHAR},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      mote_type = #{moteType,jdbcType=CHAR},
+      app_key = #{appKey,jdbcType=VARCHAR},
+      nws_key = #{nwsKey,jdbcType=VARCHAR},
+      apps_key = #{appsKey,jdbcType=VARCHAR},
+      mote_nonce = #{moteNonce,jdbcType=BIGINT},
+      ism_band = #{ismBand,jdbcType=VARCHAR},
+      lorawan_ver = #{lorawanVer,jdbcType=VARCHAR},
+      coord_type = #{coordType,jdbcType=INTEGER},
+      lng = #{lng,jdbcType=DECIMAL},
+      lat = #{lat,jdbcType=DECIMAL},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      install_addr = #{installAddr,jdbcType=VARCHAR},
+      rx_window = #{rxWindow,jdbcType=VARCHAR},
+      rx1_droffset = #{rx1Droffset,jdbcType=INTEGER},
+      rx_delay = #{rxDelay,jdbcType=INTEGER},
+      rx2_dr = #{rx2Dr,jdbcType=INTEGER},
+      rx2_frequency = #{rx2Frequency,jdbcType=VARCHAR},
+      battery_level = #{batteryLevel,jdbcType=INTEGER},
+      is_reg = #{isReg,jdbcType=INTEGER},
+      is_online = #{isOnline,jdbcType=INTEGER},
+      is_enabled = #{isEnabled,jdbcType=INTEGER},
+      last_active_time = #{lastActiveTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_type = #{createType,jdbcType=INTEGER},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      del_time = #{delTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

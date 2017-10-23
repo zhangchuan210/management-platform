@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.cdboost.dao.DictMapper">
+  <resultMap id="BaseResultMap" type="cn.com.cdboost.model.Dict">
+    <id column="dict_id" jdbcType="BIGINT" property="dictId" />
+    <result column="dict_code" jdbcType="VARCHAR" property="dictCode" />
+    <result column="dict_name" jdbcType="VARCHAR" property="dictName" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="is_enabled" jdbcType="INTEGER" property="isEnabled" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dict_id, dict_code, dict_name, remark, create_user_id, create_time, is_enabled
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from l_b_dict
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from l_b_dict
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.com.cdboost.model.Dict">
+    insert into l_b_dict (dict_id, dict_code, dict_name, 
+      remark, create_user_id, create_time, 
+      is_enabled)
+    values (#{dictId,jdbcType=BIGINT}, #{dictCode,jdbcType=VARCHAR}, #{dictName,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createUserId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{isEnabled,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.cdboost.model.Dict">
+    insert into l_b_dict
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dictId != null">
+        dict_id,
+      </if>
+      <if test="dictCode != null">
+        dict_code,
+      </if>
+      <if test="dictName != null">
+        dict_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isEnabled != null">
+        is_enabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dictId != null">
+        #{dictId,jdbcType=BIGINT},
+      </if>
+      <if test="dictCode != null">
+        #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isEnabled != null">
+        #{isEnabled,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.cdboost.model.Dict">
+    update l_b_dict
+    <set>
+      <if test="dictCode != null">
+        dict_code = #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        dict_name = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isEnabled != null">
+        is_enabled = #{isEnabled,jdbcType=INTEGER},
+      </if>
+    </set>
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.cdboost.model.Dict">
+    update l_b_dict
+    set dict_code = #{dictCode,jdbcType=VARCHAR},
+      dict_name = #{dictName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_enabled = #{isEnabled,jdbcType=INTEGER}
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.cdboost.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="cn.com.cdboost.model.User">
+    <id column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="org_no" jdbcType="BIGINT" property="orgNo" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="user_sex" jdbcType="INTEGER" property="userSex" />
+    <result column="user_contact" jdbcType="VARCHAR" property="userContact" />
+    <result column="user_mail" jdbcType="VARCHAR" property="userMail" />
+    <result column="user_addr" jdbcType="VARCHAR" property="userAddr" />
+    <result column="is_enabled" jdbcType="INTEGER" property="isEnabled" />
+    <result column="first_pinyin" jdbcType="VARCHAR" property="firstPinyin" />
+    <result column="full_pinyin" jdbcType="VARCHAR" property="fullPinyin" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_name, login_name, org_no, birthday, customer_id, user_sex, user_contact, 
+    user_mail, user_addr, is_enabled, first_pinyin, full_pinyin, create_time, create_user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from l_b_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from l_b_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.com.cdboost.model.User">
+    insert into l_b_user (user_id, user_name, login_name, 
+      org_no, birthday, customer_id, 
+      user_sex, user_contact, user_mail, 
+      user_addr, is_enabled, first_pinyin, 
+      full_pinyin, create_time, create_user_id
+      )
+    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
+      #{orgNo,jdbcType=BIGINT}, #{birthday,jdbcType=DATE}, #{customerId,jdbcType=VARCHAR}, 
+      #{userSex,jdbcType=INTEGER}, #{userContact,jdbcType=VARCHAR}, #{userMail,jdbcType=VARCHAR}, 
+      #{userAddr,jdbcType=VARCHAR}, #{isEnabled,jdbcType=INTEGER}, #{firstPinyin,jdbcType=VARCHAR}, 
+      #{fullPinyin,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.cdboost.model.User">
+    insert into l_b_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="loginName != null">
+        login_name,
+      </if>
+      <if test="orgNo != null">
+        org_no,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="userSex != null">
+        user_sex,
+      </if>
+      <if test="userContact != null">
+        user_contact,
+      </if>
+      <if test="userMail != null">
+        user_mail,
+      </if>
+      <if test="userAddr != null">
+        user_addr,
+      </if>
+      <if test="isEnabled != null">
+        is_enabled,
+      </if>
+      <if test="firstPinyin != null">
+        first_pinyin,
+      </if>
+      <if test="fullPinyin != null">
+        full_pinyin,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null">
+        #{orgNo,jdbcType=BIGINT},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=INTEGER},
+      </if>
+      <if test="userContact != null">
+        #{userContact,jdbcType=VARCHAR},
+      </if>
+      <if test="userMail != null">
+        #{userMail,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddr != null">
+        #{userAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null">
+        #{isEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="firstPinyin != null">
+        #{firstPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="fullPinyin != null">
+        #{fullPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.cdboost.model.User">
+    update l_b_user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null">
+        org_no = #{orgNo,jdbcType=BIGINT},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        user_sex = #{userSex,jdbcType=INTEGER},
+      </if>
+      <if test="userContact != null">
+        user_contact = #{userContact,jdbcType=VARCHAR},
+      </if>
+      <if test="userMail != null">
+        user_mail = #{userMail,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddr != null">
+        user_addr = #{userAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null">
+        is_enabled = #{isEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="firstPinyin != null">
+        first_pinyin = #{firstPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="fullPinyin != null">
+        full_pinyin = #{fullPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.cdboost.model.User">
+    update l_b_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      login_name = #{loginName,jdbcType=VARCHAR},
+      org_no = #{orgNo,jdbcType=BIGINT},
+      birthday = #{birthday,jdbcType=DATE},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=INTEGER},
+      user_contact = #{userContact,jdbcType=VARCHAR},
+      user_mail = #{userMail,jdbcType=VARCHAR},
+      user_addr = #{userAddr,jdbcType=VARCHAR},
+      is_enabled = #{isEnabled,jdbcType=INTEGER},
+      first_pinyin = #{firstPinyin,jdbcType=VARCHAR},
+      full_pinyin = #{fullPinyin,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+</mapper>

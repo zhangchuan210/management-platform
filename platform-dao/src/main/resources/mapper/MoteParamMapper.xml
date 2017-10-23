@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.cdboost.dao.MoteParamMapper">
+  <resultMap id="BaseResultMap" type="cn.com.cdboost.model.MoteParam">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="mote_eui" jdbcType="VARCHAR" property="moteEui" />
+    <result column="modulation" jdbcType="VARCHAR" property="modulation" />
+    <result column="bandwidth" jdbcType="INTEGER" property="bandwidth" />
+    <result column="channel_frequency" jdbcType="VARCHAR" property="channelFrequency" />
+    <result column="datarate" jdbcType="INTEGER" property="datarate" />
+    <result column="duty_cycle" jdbcType="DECIMAL" property="dutyCycle" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, mote_eui, modulation, bandwidth, channel_frequency, datarate, duty_cycle, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from l_d_moteparam
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from l_d_moteparam
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.com.cdboost.model.MoteParam">
+    insert into l_d_moteparam (ID, mote_eui, modulation, 
+      bandwidth, channel_frequency, datarate, 
+      duty_cycle, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{moteEui,jdbcType=VARCHAR}, #{modulation,jdbcType=VARCHAR}, 
+      #{bandwidth,jdbcType=INTEGER}, #{channelFrequency,jdbcType=VARCHAR}, #{datarate,jdbcType=INTEGER}, 
+      #{dutyCycle,jdbcType=DECIMAL}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.cdboost.model.MoteParam">
+    insert into l_d_moteparam
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="moteEui != null">
+        mote_eui,
+      </if>
+      <if test="modulation != null">
+        modulation,
+      </if>
+      <if test="bandwidth != null">
+        bandwidth,
+      </if>
+      <if test="channelFrequency != null">
+        channel_frequency,
+      </if>
+      <if test="datarate != null">
+        datarate,
+      </if>
+      <if test="dutyCycle != null">
+        duty_cycle,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="moteEui != null">
+        #{moteEui,jdbcType=VARCHAR},
+      </if>
+      <if test="modulation != null">
+        #{modulation,jdbcType=VARCHAR},
+      </if>
+      <if test="bandwidth != null">
+        #{bandwidth,jdbcType=INTEGER},
+      </if>
+      <if test="channelFrequency != null">
+        #{channelFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="datarate != null">
+        #{datarate,jdbcType=INTEGER},
+      </if>
+      <if test="dutyCycle != null">
+        #{dutyCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.cdboost.model.MoteParam">
+    update l_d_moteparam
+    <set>
+      <if test="moteEui != null">
+        mote_eui = #{moteEui,jdbcType=VARCHAR},
+      </if>
+      <if test="modulation != null">
+        modulation = #{modulation,jdbcType=VARCHAR},
+      </if>
+      <if test="bandwidth != null">
+        bandwidth = #{bandwidth,jdbcType=INTEGER},
+      </if>
+      <if test="channelFrequency != null">
+        channel_frequency = #{channelFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="datarate != null">
+        datarate = #{datarate,jdbcType=INTEGER},
+      </if>
+      <if test="dutyCycle != null">
+        duty_cycle = #{dutyCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.cdboost.model.MoteParam">
+    update l_d_moteparam
+    set mote_eui = #{moteEui,jdbcType=VARCHAR},
+      modulation = #{modulation,jdbcType=VARCHAR},
+      bandwidth = #{bandwidth,jdbcType=INTEGER},
+      channel_frequency = #{channelFrequency,jdbcType=VARCHAR},
+      datarate = #{datarate,jdbcType=INTEGER},
+      duty_cycle = #{dutyCycle,jdbcType=DECIMAL},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

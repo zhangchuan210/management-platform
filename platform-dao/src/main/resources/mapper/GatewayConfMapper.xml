@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.cdboost.dao.GatewayConfMapper">
+  <resultMap id="BaseResultMap" type="cn.com.cdboost.model.GatewayConf">
+    <id column="gateway_eui" jdbcType="VARCHAR" property="gatewayEui" />
+    <result column="mac_address" jdbcType="VARCHAR" property="macAddress" />
+    <result column="gw_ip_address" jdbcType="VARCHAR" property="gwIpAddress" />
+    <result column="gw_ip_mask_addr" jdbcType="VARCHAR" property="gwIpMaskAddr" />
+    <result column="gw_ipgw_addr" jdbcType="VARCHAR" property="gwIpgwAddr" />
+    <result column="server_address" jdbcType="VARCHAR" property="serverAddress" />
+    <result column="serv_port_up" jdbcType="INTEGER" property="servPortUp" />
+    <result column="serv_port_down" jdbcType="INTEGER" property="servPortDown" />
+    <result column="keepalive_interval" jdbcType="INTEGER" property="keepaliveInterval" />
+    <result column="stat_interval" jdbcType="INTEGER" property="statInterval" />
+    <result column="push_timeout_ms" jdbcType="INTEGER" property="pushTimeoutMs" />
+    <result column="pull_timeout_ms" jdbcType="INTEGER" property="pullTimeoutMs" />
+    <result column="forward_crc_valid" jdbcType="BIT" property="forwardCrcValid" />
+    <result column="forward_crc_error" jdbcType="BIT" property="forwardCrcError" />
+    <result column="forward_crc_disabled" jdbcType="BIT" property="forwardCrcDisabled" />
+    <result column="gps_enabled" jdbcType="BIT" property="gpsEnabled" />
+    <result column="fake_gps" jdbcType="BIT" property="fakeGps" />
+    <result column="ref_latitude" jdbcType="DECIMAL" property="refLatitude" />
+    <result column="ref_longitude" jdbcType="DECIMAL" property="refLongitude" />
+    <result column="ref_altitude" jdbcType="DECIMAL" property="refAltitude" />
+    <result column="beacon_period" jdbcType="INTEGER" property="beaconPeriod" />
+    <result column="beacon_freq_hz" jdbcType="INTEGER" property="beaconFreqHz" />
+    <result column="beacon_freq_nb" jdbcType="INTEGER" property="beaconFreqNb" />
+    <result column="beacon_freq_step" jdbcType="INTEGER" property="beaconFreqStep" />
+    <result column="beacon_datarate" jdbcType="INTEGER" property="beaconDatarate" />
+    <result column="beacon_bw_hz" jdbcType="INTEGER" property="beaconBwHz" />
+    <result column="beacon_power" jdbcType="INTEGER" property="beaconPower" />
+    <result column="beacon_infodesc" jdbcType="INTEGER" property="beaconInfodesc" />
+    <result column="read_write_time" jdbcType="TIMESTAMP" property="readWriteTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user_id" jdbcType="BIGINT" property="updateUserId" />
+    <result column="send_flag" jdbcType="INTEGER" property="sendFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    gateway_eui, mac_address, gw_ip_address, gw_ip_mask_addr, gw_ipgw_addr, server_address, 
+    serv_port_up, serv_port_down, keepalive_interval, stat_interval, push_timeout_ms, 
+    pull_timeout_ms, forward_crc_valid, forward_crc_error, forward_crc_disabled, gps_enabled, 
+    fake_gps, ref_latitude, ref_longitude, ref_altitude, beacon_period, beacon_freq_hz, 
+    beacon_freq_nb, beacon_freq_step, beacon_datarate, beacon_bw_hz, beacon_power, beacon_infodesc, 
+    read_write_time, update_time, update_user_id, send_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from l_d_gatewayconf
+    where gateway_eui = #{gatewayEui,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from l_d_gatewayconf
+    where gateway_eui = #{gatewayEui,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.com.cdboost.model.GatewayConf">
+    insert into l_d_gatewayconf (gateway_eui, mac_address, gw_ip_address, 
+      gw_ip_mask_addr, gw_ipgw_addr, server_address, 
+      serv_port_up, serv_port_down, keepalive_interval, 
+      stat_interval, push_timeout_ms, pull_timeout_ms, 
+      forward_crc_valid, forward_crc_error, forward_crc_disabled, 
+      gps_enabled, fake_gps, ref_latitude, 
+      ref_longitude, ref_altitude, beacon_period, 
+      beacon_freq_hz, beacon_freq_nb, beacon_freq_step, 
+      beacon_datarate, beacon_bw_hz, beacon_power, 
+      beacon_infodesc, read_write_time, update_time, 
+      update_user_id, send_flag)
+    values (#{gatewayEui,jdbcType=VARCHAR}, #{macAddress,jdbcType=VARCHAR}, #{gwIpAddress,jdbcType=VARCHAR}, 
+      #{gwIpMaskAddr,jdbcType=VARCHAR}, #{gwIpgwAddr,jdbcType=VARCHAR}, #{serverAddress,jdbcType=VARCHAR}, 
+      #{servPortUp,jdbcType=INTEGER}, #{servPortDown,jdbcType=INTEGER}, #{keepaliveInterval,jdbcType=INTEGER}, 
+      #{statInterval,jdbcType=INTEGER}, #{pushTimeoutMs,jdbcType=INTEGER}, #{pullTimeoutMs,jdbcType=INTEGER}, 
+      #{forwardCrcValid,jdbcType=BIT}, #{forwardCrcError,jdbcType=BIT}, #{forwardCrcDisabled,jdbcType=BIT}, 
+      #{gpsEnabled,jdbcType=BIT}, #{fakeGps,jdbcType=BIT}, #{refLatitude,jdbcType=DECIMAL}, 
+      #{refLongitude,jdbcType=DECIMAL}, #{refAltitude,jdbcType=DECIMAL}, #{beaconPeriod,jdbcType=INTEGER}, 
+      #{beaconFreqHz,jdbcType=INTEGER}, #{beaconFreqNb,jdbcType=INTEGER}, #{beaconFreqStep,jdbcType=INTEGER}, 
+      #{beaconDatarate,jdbcType=INTEGER}, #{beaconBwHz,jdbcType=INTEGER}, #{beaconPower,jdbcType=INTEGER}, 
+      #{beaconInfodesc,jdbcType=INTEGER}, #{readWriteTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUserId,jdbcType=BIGINT}, #{sendFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.cdboost.model.GatewayConf">
+    insert into l_d_gatewayconf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gatewayEui != null">
+        gateway_eui,
+      </if>
+      <if test="macAddress != null">
+        mac_address,
+      </if>
+      <if test="gwIpAddress != null">
+        gw_ip_address,
+      </if>
+      <if test="gwIpMaskAddr != null">
+        gw_ip_mask_addr,
+      </if>
+      <if test="gwIpgwAddr != null">
+        gw_ipgw_addr,
+      </if>
+      <if test="serverAddress != null">
+        server_address,
+      </if>
+      <if test="servPortUp != null">
+        serv_port_up,
+      </if>
+      <if test="servPortDown != null">
+        serv_port_down,
+      </if>
+      <if test="keepaliveInterval != null">
+        keepalive_interval,
+      </if>
+      <if test="statInterval != null">
+        stat_interval,
+      </if>
+      <if test="pushTimeoutMs != null">
+        push_timeout_ms,
+      </if>
+      <if test="pullTimeoutMs != null">
+        pull_timeout_ms,
+      </if>
+      <if test="forwardCrcValid != null">
+        forward_crc_valid,
+      </if>
+      <if test="forwardCrcError != null">
+        forward_crc_error,
+      </if>
+      <if test="forwardCrcDisabled != null">
+        forward_crc_disabled,
+      </if>
+      <if test="gpsEnabled != null">
+        gps_enabled,
+      </if>
+      <if test="fakeGps != null">
+        fake_gps,
+      </if>
+      <if test="refLatitude != null">
+        ref_latitude,
+      </if>
+      <if test="refLongitude != null">
+        ref_longitude,
+      </if>
+      <if test="refAltitude != null">
+        ref_altitude,
+      </if>
+      <if test="beaconPeriod != null">
+        beacon_period,
+      </if>
+      <if test="beaconFreqHz != null">
+        beacon_freq_hz,
+      </if>
+      <if test="beaconFreqNb != null">
+        beacon_freq_nb,
+      </if>
+      <if test="beaconFreqStep != null">
+        beacon_freq_step,
+      </if>
+      <if test="beaconDatarate != null">
+        beacon_datarate,
+      </if>
+      <if test="beaconBwHz != null">
+        beacon_bw_hz,
+      </if>
+      <if test="beaconPower != null">
+        beacon_power,
+      </if>
+      <if test="beaconInfodesc != null">
+        beacon_infodesc,
+      </if>
+      <if test="readWriteTime != null">
+        read_write_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="sendFlag != null">
+        send_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gatewayEui != null">
+        #{gatewayEui,jdbcType=VARCHAR},
+      </if>
+      <if test="macAddress != null">
+        #{macAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="gwIpAddress != null">
+        #{gwIpAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="gwIpMaskAddr != null">
+        #{gwIpMaskAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="gwIpgwAddr != null">
+        #{gwIpgwAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="serverAddress != null">
+        #{serverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="servPortUp != null">
+        #{servPortUp,jdbcType=INTEGER},
+      </if>
+      <if test="servPortDown != null">
+        #{servPortDown,jdbcType=INTEGER},
+      </if>
+      <if test="keepaliveInterval != null">
+        #{keepaliveInterval,jdbcType=INTEGER},
+      </if>
+      <if test="statInterval != null">
+        #{statInterval,jdbcType=INTEGER},
+      </if>
+      <if test="pushTimeoutMs != null">
+        #{pushTimeoutMs,jdbcType=INTEGER},
+      </if>
+      <if test="pullTimeoutMs != null">
+        #{pullTimeoutMs,jdbcType=INTEGER},
+      </if>
+      <if test="forwardCrcValid != null">
+        #{forwardCrcValid,jdbcType=BIT},
+      </if>
+      <if test="forwardCrcError != null">
+        #{forwardCrcError,jdbcType=BIT},
+      </if>
+      <if test="forwardCrcDisabled != null">
+        #{forwardCrcDisabled,jdbcType=BIT},
+      </if>
+      <if test="gpsEnabled != null">
+        #{gpsEnabled,jdbcType=BIT},
+      </if>
+      <if test="fakeGps != null">
+        #{fakeGps,jdbcType=BIT},
+      </if>
+      <if test="refLatitude != null">
+        #{refLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="refLongitude != null">
+        #{refLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="refAltitude != null">
+        #{refAltitude,jdbcType=DECIMAL},
+      </if>
+      <if test="beaconPeriod != null">
+        #{beaconPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="beaconFreqHz != null">
+        #{beaconFreqHz,jdbcType=INTEGER},
+      </if>
+      <if test="beaconFreqNb != null">
+        #{beaconFreqNb,jdbcType=INTEGER},
+      </if>
+      <if test="beaconFreqStep != null">
+        #{beaconFreqStep,jdbcType=INTEGER},
+      </if>
+      <if test="beaconDatarate != null">
+        #{beaconDatarate,jdbcType=INTEGER},
+      </if>
+      <if test="beaconBwHz != null">
+        #{beaconBwHz,jdbcType=INTEGER},
+      </if>
+      <if test="beaconPower != null">
+        #{beaconPower,jdbcType=INTEGER},
+      </if>
+      <if test="beaconInfodesc != null">
+        #{beaconInfodesc,jdbcType=INTEGER},
+      </if>
+      <if test="readWriteTime != null">
+        #{readWriteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="sendFlag != null">
+        #{sendFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.cdboost.model.GatewayConf">
+    update l_d_gatewayconf
+    <set>
+      <if test="macAddress != null">
+        mac_address = #{macAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="gwIpAddress != null">
+        gw_ip_address = #{gwIpAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="gwIpMaskAddr != null">
+        gw_ip_mask_addr = #{gwIpMaskAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="gwIpgwAddr != null">
+        gw_ipgw_addr = #{gwIpgwAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="serverAddress != null">
+        server_address = #{serverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="servPortUp != null">
+        serv_port_up = #{servPortUp,jdbcType=INTEGER},
+      </if>
+      <if test="servPortDown != null">
+        serv_port_down = #{servPortDown,jdbcType=INTEGER},
+      </if>
+      <if test="keepaliveInterval != null">
+        keepalive_interval = #{keepaliveInterval,jdbcType=INTEGER},
+      </if>
+      <if test="statInterval != null">
+        stat_interval = #{statInterval,jdbcType=INTEGER},
+      </if>
+      <if test="pushTimeoutMs != null">
+        push_timeout_ms = #{pushTimeoutMs,jdbcType=INTEGER},
+      </if>
+      <if test="pullTimeoutMs != null">
+        pull_timeout_ms = #{pullTimeoutMs,jdbcType=INTEGER},
+      </if>
+      <if test="forwardCrcValid != null">
+        forward_crc_valid = #{forwardCrcValid,jdbcType=BIT},
+      </if>
+      <if test="forwardCrcError != null">
+        forward_crc_error = #{forwardCrcError,jdbcType=BIT},
+      </if>
+      <if test="forwardCrcDisabled != null">
+        forward_crc_disabled = #{forwardCrcDisabled,jdbcType=BIT},
+      </if>
+      <if test="gpsEnabled != null">
+        gps_enabled = #{gpsEnabled,jdbcType=BIT},
+      </if>
+      <if test="fakeGps != null">
+        fake_gps = #{fakeGps,jdbcType=BIT},
+      </if>
+      <if test="refLatitude != null">
+        ref_latitude = #{refLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="refLongitude != null">
+        ref_longitude = #{refLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="refAltitude != null">
+        ref_altitude = #{refAltitude,jdbcType=DECIMAL},
+      </if>
+      <if test="beaconPeriod != null">
+        beacon_period = #{beaconPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="beaconFreqHz != null">
+        beacon_freq_hz = #{beaconFreqHz,jdbcType=INTEGER},
+      </if>
+      <if test="beaconFreqNb != null">
+        beacon_freq_nb = #{beaconFreqNb,jdbcType=INTEGER},
+      </if>
+      <if test="beaconFreqStep != null">
+        beacon_freq_step = #{beaconFreqStep,jdbcType=INTEGER},
+      </if>
+      <if test="beaconDatarate != null">
+        beacon_datarate = #{beaconDatarate,jdbcType=INTEGER},
+      </if>
+      <if test="beaconBwHz != null">
+        beacon_bw_hz = #{beaconBwHz,jdbcType=INTEGER},
+      </if>
+      <if test="beaconPower != null">
+        beacon_power = #{beaconPower,jdbcType=INTEGER},
+      </if>
+      <if test="beaconInfodesc != null">
+        beacon_infodesc = #{beaconInfodesc,jdbcType=INTEGER},
+      </if>
+      <if test="readWriteTime != null">
+        read_write_time = #{readWriteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="sendFlag != null">
+        send_flag = #{sendFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where gateway_eui = #{gatewayEui,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.cdboost.model.GatewayConf">
+    update l_d_gatewayconf
+    set mac_address = #{macAddress,jdbcType=VARCHAR},
+      gw_ip_address = #{gwIpAddress,jdbcType=VARCHAR},
+      gw_ip_mask_addr = #{gwIpMaskAddr,jdbcType=VARCHAR},
+      gw_ipgw_addr = #{gwIpgwAddr,jdbcType=VARCHAR},
+      server_address = #{serverAddress,jdbcType=VARCHAR},
+      serv_port_up = #{servPortUp,jdbcType=INTEGER},
+      serv_port_down = #{servPortDown,jdbcType=INTEGER},
+      keepalive_interval = #{keepaliveInterval,jdbcType=INTEGER},
+      stat_interval = #{statInterval,jdbcType=INTEGER},
+      push_timeout_ms = #{pushTimeoutMs,jdbcType=INTEGER},
+      pull_timeout_ms = #{pullTimeoutMs,jdbcType=INTEGER},
+      forward_crc_valid = #{forwardCrcValid,jdbcType=BIT},
+      forward_crc_error = #{forwardCrcError,jdbcType=BIT},
+      forward_crc_disabled = #{forwardCrcDisabled,jdbcType=BIT},
+      gps_enabled = #{gpsEnabled,jdbcType=BIT},
+      fake_gps = #{fakeGps,jdbcType=BIT},
+      ref_latitude = #{refLatitude,jdbcType=DECIMAL},
+      ref_longitude = #{refLongitude,jdbcType=DECIMAL},
+      ref_altitude = #{refAltitude,jdbcType=DECIMAL},
+      beacon_period = #{beaconPeriod,jdbcType=INTEGER},
+      beacon_freq_hz = #{beaconFreqHz,jdbcType=INTEGER},
+      beacon_freq_nb = #{beaconFreqNb,jdbcType=INTEGER},
+      beacon_freq_step = #{beaconFreqStep,jdbcType=INTEGER},
+      beacon_datarate = #{beaconDatarate,jdbcType=INTEGER},
+      beacon_bw_hz = #{beaconBwHz,jdbcType=INTEGER},
+      beacon_power = #{beaconPower,jdbcType=INTEGER},
+      beacon_infodesc = #{beaconInfodesc,jdbcType=INTEGER},
+      read_write_time = #{readWriteTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=BIGINT},
+      send_flag = #{sendFlag,jdbcType=INTEGER}
+    where gateway_eui = #{gatewayEui,jdbcType=VARCHAR}
+  </update>
+</mapper>

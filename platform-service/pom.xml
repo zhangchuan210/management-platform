@@ -10,57 +10,139 @@
     <packaging>war</packaging>
     <name>platform-service Maven Webapp</name>
     <url>http://maven.apache.org</url>
+
+    <properties>
+        <!-- Common libs -->
+        <spring_version>4.3.10.RELEASE</spring_version>
+        <dubbo_version>2.5.6</dubbo_version>
+        <cglib_version>2.2</cglib_version>
+        <zkclient_version>0.2</zkclient_version>
+        <log4j_version>1.2.16</log4j_version>
+        <servlet_version>2.5</servlet_version>
+        <junit_version>4.12</junit_version>
+        <mysql-connector-java_version>6.0.6</mysql-connector-java_version>
+        <druid_version>1.1.2</druid_version>
+        <guava_version>23.0</guava_version>
+    </properties>
+
     <dependencies>
-       <dependency>
+        <dependency>
+            <groupId>cn.com.cdboost</groupId>
+            <artifactId>platform-dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>cn.com.cdboost</groupId>
             <artifactId>platform-facade</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
-            <version>2.5.6</version>
+            <version>${dubbo_version}</version>
         </dependency>
+
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
-            <version>2.2</version>
+            <version>${cglib_version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.6.8</version>
-        </dependency>
+
         <dependency>
             <groupId>com.101tec</groupId>
             <artifactId>zkclient</artifactId>
-            <version>0.10</version>
+            <version>${zkclient_version}</version>
+        </dependency>
+
+        <!-- 添加Spring支持 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring_version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>4.3.10.RELEASE</version>
-            <scope>compile</scope>
+            <version>${spring_version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring_version}</version>
+        </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
+            <version>${servlet_version}</version>
         </dependency>
+
+        <!-- jdbc驱动包  -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.0</version>
-            <scope>provided</scope>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java_version}</version>
         </dependency>
+        <!-- 数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid_version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava_version}</version>
+        </dependency>
+
+        <!-- 添加日志支持 -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j_version}</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit_version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <build>
         <finalName>platform-service</finalName>
     </build>

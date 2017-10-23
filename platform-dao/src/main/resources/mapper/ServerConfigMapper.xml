@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.cdboost.dao.ServerConfigMapper">
+  <resultMap id="BaseResultMap" type="cn.com.cdboost.model.ServerConfig">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="server_name" jdbcType="VARCHAR" property="serverName" />
+    <result column="server_addr" jdbcType="VARCHAR" property="serverAddr" />
+    <result column="server_port" jdbcType="INTEGER" property="serverPort" />
+    <result column="out_time" jdbcType="INTEGER" property="outTime" />
+    <result column="is_reg" jdbcType="INTEGER" property="isReg" />
+    <result column="is_enabled" jdbcType="INTEGER" property="isEnabled" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, server_name, server_addr, server_port, out_time, is_reg, is_enabled, create_time, 
+    create_user_id, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from l_s_serverconfig
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from l_s_serverconfig
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.cdboost.model.ServerConfig">
+    insert into l_s_serverconfig (ID, server_name, server_addr, 
+      server_port, out_time, is_reg, 
+      is_enabled, create_time, create_user_id, 
+      remark)
+    values (#{id,jdbcType=INTEGER}, #{serverName,jdbcType=VARCHAR}, #{serverAddr,jdbcType=VARCHAR}, 
+      #{serverPort,jdbcType=INTEGER}, #{outTime,jdbcType=INTEGER}, #{isReg,jdbcType=INTEGER}, 
+      #{isEnabled,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=BIGINT}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.cdboost.model.ServerConfig">
+    insert into l_s_serverconfig
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="serverName != null">
+        server_name,
+      </if>
+      <if test="serverAddr != null">
+        server_addr,
+      </if>
+      <if test="serverPort != null">
+        server_port,
+      </if>
+      <if test="outTime != null">
+        out_time,
+      </if>
+      <if test="isReg != null">
+        is_reg,
+      </if>
+      <if test="isEnabled != null">
+        is_enabled,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serverName != null">
+        #{serverName,jdbcType=VARCHAR},
+      </if>
+      <if test="serverAddr != null">
+        #{serverAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="serverPort != null">
+        #{serverPort,jdbcType=INTEGER},
+      </if>
+      <if test="outTime != null">
+        #{outTime,jdbcType=INTEGER},
+      </if>
+      <if test="isReg != null">
+        #{isReg,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null">
+        #{isEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.cdboost.model.ServerConfig">
+    update l_s_serverconfig
+    <set>
+      <if test="serverName != null">
+        server_name = #{serverName,jdbcType=VARCHAR},
+      </if>
+      <if test="serverAddr != null">
+        server_addr = #{serverAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="serverPort != null">
+        server_port = #{serverPort,jdbcType=INTEGER},
+      </if>
+      <if test="outTime != null">
+        out_time = #{outTime,jdbcType=INTEGER},
+      </if>
+      <if test="isReg != null">
+        is_reg = #{isReg,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null">
+        is_enabled = #{isEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.cdboost.model.ServerConfig">
+    update l_s_serverconfig
+    set server_name = #{serverName,jdbcType=VARCHAR},
+      server_addr = #{serverAddr,jdbcType=VARCHAR},
+      server_port = #{serverPort,jdbcType=INTEGER},
+      out_time = #{outTime,jdbcType=INTEGER},
+      is_reg = #{isReg,jdbcType=INTEGER},
+      is_enabled = #{isEnabled,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

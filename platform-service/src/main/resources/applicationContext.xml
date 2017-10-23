@@ -1,26 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<context:property-placeholder location="classpath:*.properties" ignore-unresolvable="true" file-encoding="UTF-8" />
-	<!-- 配置当前应用模块名称 -->
-	<dubbo:application name="platform-service"/>
+	<context:property-placeholder location="classpath*:*.properties" ignore-unresolvable="true" file-encoding="UTF-8" />
 
-	<!-- 配置注册中心的位置 -->
-	<!-- 配置ZooKeeper注册中心位置方式如下 -->
-	<dubbo:registry address="${zookeeper.address}" protocol="zookeeper"/>
+	<import resource="classpath:spring-dubbo.xml"/>
 
-	<!-- 配置Dubbo客户端的访问端口 -->
-	<dubbo:protocol name="dubbo" port="20880"/>
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<bean id="MapperScannerConfigurer"  class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="cn.com.cdboost.dao" />
+	</bean>
 
-	<!-- 配置接口实现类对应的bean -->
-	<bean id="demoService" class="cn.com.cdboost.service.impl.DemoServiceImpl"/>
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="${mysql.driverClass}"></property>
+		<property name="url" value="${mysql.url}"/>
+		<property name="username" value="${mysql.username}"/>
+		<property name="password" value="${mysql.password}"/>
+	</bean>
 
-	<!-- 配置提供的服务的接口 -->
-	<dubbo:service interface="cn.com.cdboost.service.DemoService" ref="demoService"/>
+	<!-- 配置mybatis的sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 自动扫描mappers.xml文件 -->
+		<property name="mapperLocations" value="classpath*:mapper/*.xml"></property>
+		<!-- mybatis配置文件 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean>
 
+	<!-- 事务管理 -->
+	<bean id="txManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 开启注解事务 只对当前配置文件有效 注解事务和下面的声明式事务只需选择其中一种，推荐用声明式事务 -->
+	<!-- <aop:aspectj-autoproxy expose-proxy="true"/> -->
+	<tx:annotation-driven transaction-manager="txManager"/>
+
+	<context:component-scan base-package="cn.com.cdboost"/>
 </beans>

@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.cdboost.dao.GatewayMapper">
+  <resultMap id="BaseResultMap" type="cn.com.cdboost.model.Gateway">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="gateway_eui" jdbcType="CHAR" property="gatewayEui" />
+    <result column="org_no" jdbcType="BIGINT" property="orgNo" />
+    <result column="gateway_name" jdbcType="VARCHAR" property="gatewayName" />
+    <result column="gateway_model" jdbcType="VARCHAR" property="gatewayModel" />
+    <result column="software_ver" jdbcType="VARCHAR" property="softwareVer" />
+    <result column="hardware_ver" jdbcType="VARCHAR" property="hardwareVer" />
+    <result column="nw_code" jdbcType="VARCHAR" property="nwCode" />
+    <result column="coord_type" jdbcType="INTEGER" property="coordType" />
+    <result column="lng" jdbcType="DECIMAL" property="lng" />
+    <result column="lat" jdbcType="DECIMAL" property="lat" />
+    <result column="altitude" jdbcType="DECIMAL" property="altitude" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="install_addr" jdbcType="VARCHAR" property="installAddr" />
+    <result column="rxnb" jdbcType="INTEGER" property="rxnb" />
+    <result column="rxok" jdbcType="INTEGER" property="rxok" />
+    <result column="rxfw" jdbcType="INTEGER" property="rxfw" />
+    <result column="ackr" jdbcType="DECIMAL" property="ackr" />
+    <result column="dwnb" jdbcType="INTEGER" property="dwnb" />
+    <result column="txnb" jdbcType="INTEGER" property="txnb" />
+    <result column="is_reg" jdbcType="INTEGER" property="isReg" />
+    <result column="is_enabled" jdbcType="INTEGER" property="isEnabled" />
+    <result column="is_online" jdbcType="INTEGER" property="isOnline" />
+    <result column="last_active_time" jdbcType="TIMESTAMP" property="lastActiveTime" />
+    <result column="last_connect_time" jdbcType="TIMESTAMP" property="lastConnectTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_type" jdbcType="INTEGER" property="createType" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, gateway_eui, org_no, gateway_name, gateway_model, software_ver, hardware_ver, 
+    nw_code, coord_type, lng, lat, altitude, province, city, district, install_addr, 
+    rxnb, rxok, rxfw, ackr, dwnb, txnb, is_reg, is_enabled, is_online, last_active_time, 
+    last_connect_time, create_time, create_type, create_user_id, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from l_d_gateway
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from l_d_gateway
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.com.cdboost.model.Gateway">
+    insert into l_d_gateway (ID, gateway_eui, org_no, 
+      gateway_name, gateway_model, software_ver, 
+      hardware_ver, nw_code, coord_type, 
+      lng, lat, altitude, 
+      province, city, district, 
+      install_addr, rxnb, rxok, 
+      rxfw, ackr, dwnb, txnb, 
+      is_reg, is_enabled, is_online, 
+      last_active_time, last_connect_time, create_time, 
+      create_type, create_user_id, remark
+      )
+    values (#{id,jdbcType=BIGINT}, #{gatewayEui,jdbcType=CHAR}, #{orgNo,jdbcType=BIGINT}, 
+      #{gatewayName,jdbcType=VARCHAR}, #{gatewayModel,jdbcType=VARCHAR}, #{softwareVer,jdbcType=VARCHAR}, 
+      #{hardwareVer,jdbcType=VARCHAR}, #{nwCode,jdbcType=VARCHAR}, #{coordType,jdbcType=INTEGER}, 
+      #{lng,jdbcType=DECIMAL}, #{lat,jdbcType=DECIMAL}, #{altitude,jdbcType=DECIMAL}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, 
+      #{installAddr,jdbcType=VARCHAR}, #{rxnb,jdbcType=INTEGER}, #{rxok,jdbcType=INTEGER}, 
+      #{rxfw,jdbcType=INTEGER}, #{ackr,jdbcType=DECIMAL}, #{dwnb,jdbcType=INTEGER}, #{txnb,jdbcType=INTEGER}, 
+      #{isReg,jdbcType=INTEGER}, #{isEnabled,jdbcType=INTEGER}, #{isOnline,jdbcType=INTEGER}, 
+      #{lastActiveTime,jdbcType=TIMESTAMP}, #{lastConnectTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createType,jdbcType=INTEGER}, #{createUserId,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.cdboost.model.Gateway">
+    insert into l_d_gateway
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="gatewayEui != null">
+        gateway_eui,
+      </if>
+      <if test="orgNo != null">
+        org_no,
+      </if>
+      <if test="gatewayName != null">
+        gateway_name,
+      </if>
+      <if test="gatewayModel != null">
+        gateway_model,
+      </if>
+      <if test="softwareVer != null">
+        software_ver,
+      </if>
+      <if test="hardwareVer != null">
+        hardware_ver,
+      </if>
+      <if test="nwCode != null">
+        nw_code,
+      </if>
+      <if test="coordType != null">
+        coord_type,
+      </if>
+      <if test="lng != null">
+        lng,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="altitude != null">
+        altitude,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="installAddr != null">
+        install_addr,
+      </if>
+      <if test="rxnb != null">
+        rxnb,
+      </if>
+      <if test="rxok != null">
+        rxok,
+      </if>
+      <if test="rxfw != null">
+        rxfw,
+      </if>
+      <if test="ackr != null">
+        ackr,
+      </if>
+      <if test="dwnb != null">
+        dwnb,
+      </if>
+      <if test="txnb != null">
+        txnb,
+      </if>
+      <if test="isReg != null">
+        is_reg,
+      </if>
+      <if test="isEnabled != null">
+        is_enabled,
+      </if>
+      <if test="isOnline != null">
+        is_online,
+      </if>
+      <if test="lastActiveTime != null">
+        last_active_time,
+      </if>
+      <if test="lastConnectTime != null">
+        last_connect_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createType != null">
+        create_type,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gatewayEui != null">
+        #{gatewayEui,jdbcType=CHAR},
+      </if>
+      <if test="orgNo != null">
+        #{orgNo,jdbcType=BIGINT},
+      </if>
+      <if test="gatewayName != null">
+        #{gatewayName,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewayModel != null">
+        #{gatewayModel,jdbcType=VARCHAR},
+      </if>
+      <if test="softwareVer != null">
+        #{softwareVer,jdbcType=VARCHAR},
+      </if>
+      <if test="hardwareVer != null">
+        #{hardwareVer,jdbcType=VARCHAR},
+      </if>
+      <if test="nwCode != null">
+        #{nwCode,jdbcType=VARCHAR},
+      </if>
+      <if test="coordType != null">
+        #{coordType,jdbcType=INTEGER},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=DECIMAL},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=DECIMAL},
+      </if>
+      <if test="altitude != null">
+        #{altitude,jdbcType=DECIMAL},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="installAddr != null">
+        #{installAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="rxnb != null">
+        #{rxnb,jdbcType=INTEGER},
+      </if>
+      <if test="rxok != null">
+        #{rxok,jdbcType=INTEGER},
+      </if>
+      <if test="rxfw != null">
+        #{rxfw,jdbcType=INTEGER},
+      </if>
+      <if test="ackr != null">
+        #{ackr,jdbcType=DECIMAL},
+      </if>
+      <if test="dwnb != null">
+        #{dwnb,jdbcType=INTEGER},
+      </if>
+      <if test="txnb != null">
+        #{txnb,jdbcType=INTEGER},
+      </if>
+      <if test="isReg != null">
+        #{isReg,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null">
+        #{isEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="isOnline != null">
+        #{isOnline,jdbcType=INTEGER},
+      </if>
+      <if test="lastActiveTime != null">
+        #{lastActiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastConnectTime != null">
+        #{lastConnectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createType != null">
+        #{createType,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.cdboost.model.Gateway">
+    update l_d_gateway
+    <set>
+      <if test="gatewayEui != null">
+        gateway_eui = #{gatewayEui,jdbcType=CHAR},
+      </if>
+      <if test="orgNo != null">
+        org_no = #{orgNo,jdbcType=BIGINT},
+      </if>
+      <if test="gatewayName != null">
+        gateway_name = #{gatewayName,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewayModel != null">
+        gateway_model = #{gatewayModel,jdbcType=VARCHAR},
+      </if>
+      <if test="softwareVer != null">
+        software_ver = #{softwareVer,jdbcType=VARCHAR},
+      </if>
+      <if test="hardwareVer != null">
+        hardware_ver = #{hardwareVer,jdbcType=VARCHAR},
+      </if>
+      <if test="nwCode != null">
+        nw_code = #{nwCode,jdbcType=VARCHAR},
+      </if>
+      <if test="coordType != null">
+        coord_type = #{coordType,jdbcType=INTEGER},
+      </if>
+      <if test="lng != null">
+        lng = #{lng,jdbcType=DECIMAL},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=DECIMAL},
+      </if>
+      <if test="altitude != null">
+        altitude = #{altitude,jdbcType=DECIMAL},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="installAddr != null">
+        install_addr = #{installAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="rxnb != null">
+        rxnb = #{rxnb,jdbcType=INTEGER},
+      </if>
+      <if test="rxok != null">
+        rxok = #{rxok,jdbcType=INTEGER},
+      </if>
+      <if test="rxfw != null">
+        rxfw = #{rxfw,jdbcType=INTEGER},
+      </if>
+      <if test="ackr != null">
+        ackr = #{ackr,jdbcType=DECIMAL},
+      </if>
+      <if test="dwnb != null">
+        dwnb = #{dwnb,jdbcType=INTEGER},
+      </if>
+      <if test="txnb != null">
+        txnb = #{txnb,jdbcType=INTEGER},
+      </if>
+      <if test="isReg != null">
+        is_reg = #{isReg,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null">
+        is_enabled = #{isEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="isOnline != null">
+        is_online = #{isOnline,jdbcType=INTEGER},
+      </if>
+      <if test="lastActiveTime != null">
+        last_active_time = #{lastActiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastConnectTime != null">
+        last_connect_time = #{lastConnectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createType != null">
+        create_type = #{createType,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.cdboost.model.Gateway">
+    update l_d_gateway
+    set gateway_eui = #{gatewayEui,jdbcType=CHAR},
+      org_no = #{orgNo,jdbcType=BIGINT},
+      gateway_name = #{gatewayName,jdbcType=VARCHAR},
+      gateway_model = #{gatewayModel,jdbcType=VARCHAR},
+      software_ver = #{softwareVer,jdbcType=VARCHAR},
+      hardware_ver = #{hardwareVer,jdbcType=VARCHAR},
+      nw_code = #{nwCode,jdbcType=VARCHAR},
+      coord_type = #{coordType,jdbcType=INTEGER},
+      lng = #{lng,jdbcType=DECIMAL},
+      lat = #{lat,jdbcType=DECIMAL},
+      altitude = #{altitude,jdbcType=DECIMAL},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      install_addr = #{installAddr,jdbcType=VARCHAR},
+      rxnb = #{rxnb,jdbcType=INTEGER},
+      rxok = #{rxok,jdbcType=INTEGER},
+      rxfw = #{rxfw,jdbcType=INTEGER},
+      ackr = #{ackr,jdbcType=DECIMAL},
+      dwnb = #{dwnb,jdbcType=INTEGER},
+      txnb = #{txnb,jdbcType=INTEGER},
+      is_reg = #{isReg,jdbcType=INTEGER},
+      is_enabled = #{isEnabled,jdbcType=INTEGER},
+      is_online = #{isOnline,jdbcType=INTEGER},
+      last_active_time = #{lastActiveTime,jdbcType=TIMESTAMP},
+      last_connect_time = #{lastConnectTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_type = #{createType,jdbcType=INTEGER},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.cdboost.dao.OrgMapper">
+  <resultMap id="BaseResultMap" type="cn.com.cdboost.model.Org">
+    <id column="org_no" jdbcType="BIGINT" property="orgNo" />
+    <result column="org_name" jdbcType="VARCHAR" property="orgName" />
+    <result column="org_addr" jdbcType="VARCHAR" property="orgAddr" />
+    <result column="p_org_no" jdbcType="BIGINT" property="pOrgNo" />
+    <result column="first_pinyin" jdbcType="VARCHAR" property="firstPinyin" />
+    <result column="full_pinyin" jdbcType="VARCHAR" property="fullPinyin" />
+    <result column="level_code" jdbcType="VARCHAR" property="levelCode" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="sort_no" jdbcType="INTEGER" property="sortNo" />
+    <result column="is_enabled" jdbcType="INTEGER" property="isEnabled" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    org_no, org_name, org_addr, p_org_no, first_pinyin, full_pinyin, level_code, level, 
+    sort_no, is_enabled, create_time, create_user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from l_b_org
+    where org_no = #{orgNo,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from l_b_org
+    where org_no = #{orgNo,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.com.cdboost.model.Org">
+    insert into l_b_org (org_no, org_name, org_addr, 
+      p_org_no, first_pinyin, full_pinyin, 
+      level_code, level, sort_no, 
+      is_enabled, create_time, create_user_id
+      )
+    values (#{orgNo,jdbcType=BIGINT}, #{orgName,jdbcType=VARCHAR}, #{orgAddr,jdbcType=VARCHAR}, 
+      #{pOrgNo,jdbcType=BIGINT}, #{firstPinyin,jdbcType=VARCHAR}, #{fullPinyin,jdbcType=VARCHAR}, 
+      #{levelCode,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{sortNo,jdbcType=INTEGER}, 
+      #{isEnabled,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.cdboost.model.Org">
+    insert into l_b_org
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orgNo != null">
+        org_no,
+      </if>
+      <if test="orgName != null">
+        org_name,
+      </if>
+      <if test="orgAddr != null">
+        org_addr,
+      </if>
+      <if test="pOrgNo != null">
+        p_org_no,
+      </if>
+      <if test="firstPinyin != null">
+        first_pinyin,
+      </if>
+      <if test="fullPinyin != null">
+        full_pinyin,
+      </if>
+      <if test="levelCode != null">
+        level_code,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="sortNo != null">
+        sort_no,
+      </if>
+      <if test="isEnabled != null">
+        is_enabled,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orgNo != null">
+        #{orgNo,jdbcType=BIGINT},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgAddr != null">
+        #{orgAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="pOrgNo != null">
+        #{pOrgNo,jdbcType=BIGINT},
+      </if>
+      <if test="firstPinyin != null">
+        #{firstPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="fullPinyin != null">
+        #{fullPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="levelCode != null">
+        #{levelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null">
+        #{isEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.cdboost.model.Org">
+    update l_b_org
+    <set>
+      <if test="orgName != null">
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgAddr != null">
+        org_addr = #{orgAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="pOrgNo != null">
+        p_org_no = #{pOrgNo,jdbcType=BIGINT},
+      </if>
+      <if test="firstPinyin != null">
+        first_pinyin = #{firstPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="fullPinyin != null">
+        full_pinyin = #{fullPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="levelCode != null">
+        level_code = #{levelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null">
+        sort_no = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null">
+        is_enabled = #{isEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where org_no = #{orgNo,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.cdboost.model.Org">
+    update l_b_org
+    set org_name = #{orgName,jdbcType=VARCHAR},
+      org_addr = #{orgAddr,jdbcType=VARCHAR},
+      p_org_no = #{pOrgNo,jdbcType=BIGINT},
+      first_pinyin = #{firstPinyin,jdbcType=VARCHAR},
+      full_pinyin = #{fullPinyin,jdbcType=VARCHAR},
+      level_code = #{levelCode,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      sort_no = #{sortNo,jdbcType=INTEGER},
+      is_enabled = #{isEnabled,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT}
+    where org_no = #{orgNo,jdbcType=BIGINT}
+  </update>
+</mapper>

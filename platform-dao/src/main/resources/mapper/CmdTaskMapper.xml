@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.cdboost.dao.CmdTaskMapper">
+  <resultMap id="BaseResultMap" type="cn.com.cdboost.model.CmdTask">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="task_guid" jdbcType="VARCHAR" property="taskGuid" />
+    <result column="gateway_eui" jdbcType="VARCHAR" property="gatewayEui" />
+    <result column="reply_time" jdbcType="TIMESTAMP" property="replyTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="send_flag" jdbcType="INTEGER" property="sendFlag" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.com.cdboost.model.CmdTaskWithBLOBs">
+    <result column="send_content" jdbcType="LONGVARCHAR" property="sendContent" />
+    <result column="reply_content" jdbcType="LONGVARCHAR" property="replyContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, task_guid, gateway_eui, reply_time, create_time, create_user_id, send_flag
+  </sql>
+  <sql id="Blob_Column_List">
+    send_content, reply_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from l_d_cmdtask
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from l_d_cmdtask
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.cdboost.model.CmdTaskWithBLOBs">
+    insert into l_d_cmdtask (id, task_guid, gateway_eui, 
+      reply_time, create_time, create_user_id, 
+      send_flag, send_content, reply_content
+      )
+    values (#{id,jdbcType=INTEGER}, #{taskGuid,jdbcType=VARCHAR}, #{gatewayEui,jdbcType=VARCHAR}, 
+      #{replyTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=BIGINT}, 
+      #{sendFlag,jdbcType=INTEGER}, #{sendContent,jdbcType=LONGVARCHAR}, #{replyContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.cdboost.model.CmdTaskWithBLOBs">
+    insert into l_d_cmdtask
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="taskGuid != null">
+        task_guid,
+      </if>
+      <if test="gatewayEui != null">
+        gateway_eui,
+      </if>
+      <if test="replyTime != null">
+        reply_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="sendFlag != null">
+        send_flag,
+      </if>
+      <if test="sendContent != null">
+        send_content,
+      </if>
+      <if test="replyContent != null">
+        reply_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="taskGuid != null">
+        #{taskGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewayEui != null">
+        #{gatewayEui,jdbcType=VARCHAR},
+      </if>
+      <if test="replyTime != null">
+        #{replyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="sendFlag != null">
+        #{sendFlag,jdbcType=INTEGER},
+      </if>
+      <if test="sendContent != null">
+        #{sendContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="replyContent != null">
+        #{replyContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.cdboost.model.CmdTaskWithBLOBs">
+    update l_d_cmdtask
+    <set>
+      <if test="taskGuid != null">
+        task_guid = #{taskGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewayEui != null">
+        gateway_eui = #{gatewayEui,jdbcType=VARCHAR},
+      </if>
+      <if test="replyTime != null">
+        reply_time = #{replyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="sendFlag != null">
+        send_flag = #{sendFlag,jdbcType=INTEGER},
+      </if>
+      <if test="sendContent != null">
+        send_content = #{sendContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="replyContent != null">
+        reply_content = #{replyContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.com.cdboost.model.CmdTaskWithBLOBs">
+    update l_d_cmdtask
+    set task_guid = #{taskGuid,jdbcType=VARCHAR},
+      gateway_eui = #{gatewayEui,jdbcType=VARCHAR},
+      reply_time = #{replyTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      send_flag = #{sendFlag,jdbcType=INTEGER},
+      send_content = #{sendContent,jdbcType=LONGVARCHAR},
+      reply_content = #{replyContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.cdboost.model.CmdTask">
+    update l_d_cmdtask
+    set task_guid = #{taskGuid,jdbcType=VARCHAR},
+      gateway_eui = #{gatewayEui,jdbcType=VARCHAR},
+      reply_time = #{replyTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      send_flag = #{sendFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

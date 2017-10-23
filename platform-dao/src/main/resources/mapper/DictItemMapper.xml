@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.cdboost.dao.DictItemMapper">
+  <resultMap id="BaseResultMap" type="cn.com.cdboost.model.DictItem">
+    <id column="dict_item_id" jdbcType="BIGINT" property="dictItemId" />
+    <result column="dict_code" jdbcType="VARCHAR" property="dictCode" />
+    <result column="dict_item_value" jdbcType="VARCHAR" property="dictItemValue" />
+    <result column="dict_item_name" jdbcType="VARCHAR" property="dictItemName" />
+    <result column="p_dict_item_id" jdbcType="BIGINT" property="pDictItemId" />
+    <result column="tree_level" jdbcType="INTEGER" property="treeLevel" />
+    <result column="is_lowest" jdbcType="INTEGER" property="isLowest" />
+    <result column="sort_no" jdbcType="INTEGER" property="sortNo" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="is_enabled" jdbcType="INTEGER" property="isEnabled" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dict_item_id, dict_code, dict_item_value, dict_item_name, p_dict_item_id, tree_level, 
+    is_lowest, sort_no, Remark, create_user_id, create_time, is_enabled
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from l_b_dictitem
+    where dict_item_id = #{dictItemId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from l_b_dictitem
+    where dict_item_id = #{dictItemId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.com.cdboost.model.DictItem">
+    insert into l_b_dictitem (dict_item_id, dict_code, dict_item_value, 
+      dict_item_name, p_dict_item_id, tree_level, 
+      is_lowest, sort_no, Remark, 
+      create_user_id, create_time, is_enabled
+      )
+    values (#{dictItemId,jdbcType=BIGINT}, #{dictCode,jdbcType=VARCHAR}, #{dictItemValue,jdbcType=VARCHAR}, 
+      #{dictItemName,jdbcType=VARCHAR}, #{pDictItemId,jdbcType=BIGINT}, #{treeLevel,jdbcType=INTEGER}, 
+      #{isLowest,jdbcType=INTEGER}, #{sortNo,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{isEnabled,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.cdboost.model.DictItem">
+    insert into l_b_dictitem
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dictItemId != null">
+        dict_item_id,
+      </if>
+      <if test="dictCode != null">
+        dict_code,
+      </if>
+      <if test="dictItemValue != null">
+        dict_item_value,
+      </if>
+      <if test="dictItemName != null">
+        dict_item_name,
+      </if>
+      <if test="pDictItemId != null">
+        p_dict_item_id,
+      </if>
+      <if test="treeLevel != null">
+        tree_level,
+      </if>
+      <if test="isLowest != null">
+        is_lowest,
+      </if>
+      <if test="sortNo != null">
+        sort_no,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isEnabled != null">
+        is_enabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dictItemId != null">
+        #{dictItemId,jdbcType=BIGINT},
+      </if>
+      <if test="dictCode != null">
+        #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictItemValue != null">
+        #{dictItemValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dictItemName != null">
+        #{dictItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="pDictItemId != null">
+        #{pDictItemId,jdbcType=BIGINT},
+      </if>
+      <if test="treeLevel != null">
+        #{treeLevel,jdbcType=INTEGER},
+      </if>
+      <if test="isLowest != null">
+        #{isLowest,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isEnabled != null">
+        #{isEnabled,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.cdboost.model.DictItem">
+    update l_b_dictitem
+    <set>
+      <if test="dictCode != null">
+        dict_code = #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictItemValue != null">
+        dict_item_value = #{dictItemValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dictItemName != null">
+        dict_item_name = #{dictItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="pDictItemId != null">
+        p_dict_item_id = #{pDictItemId,jdbcType=BIGINT},
+      </if>
+      <if test="treeLevel != null">
+        tree_level = #{treeLevel,jdbcType=INTEGER},
+      </if>
+      <if test="isLowest != null">
+        is_lowest = #{isLowest,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null">
+        sort_no = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isEnabled != null">
+        is_enabled = #{isEnabled,jdbcType=INTEGER},
+      </if>
+    </set>
+    where dict_item_id = #{dictItemId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.cdboost.model.DictItem">
+    update l_b_dictitem
+    set dict_code = #{dictCode,jdbcType=VARCHAR},
+      dict_item_value = #{dictItemValue,jdbcType=VARCHAR},
+      dict_item_name = #{dictItemName,jdbcType=VARCHAR},
+      p_dict_item_id = #{pDictItemId,jdbcType=BIGINT},
+      tree_level = #{treeLevel,jdbcType=INTEGER},
+      is_lowest = #{isLowest,jdbcType=INTEGER},
+      sort_no = #{sortNo,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_enabled = #{isEnabled,jdbcType=INTEGER}
+    where dict_item_id = #{dictItemId,jdbcType=BIGINT}
+  </update>
+</mapper>

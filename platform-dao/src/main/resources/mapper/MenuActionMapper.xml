@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.cdboost.dao.MenuActionMapper">
+  <resultMap id="BaseResultMap" type="cn.com.cdboost.model.MenuAction">
+    <id column="action_id" jdbcType="BIGINT" property="actionId" />
+    <result column="action_name" jdbcType="VARCHAR" property="actionName" />
+    <result column="action_flag" jdbcType="INTEGER" property="actionFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="is_enabled" jdbcType="INTEGER" property="isEnabled" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    action_id, action_name, action_flag, create_time, create_user_id, is_enabled
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from l_b_menuaction
+    where action_id = #{actionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from l_b_menuaction
+    where action_id = #{actionId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.com.cdboost.model.MenuAction">
+    insert into l_b_menuaction (action_id, action_name, action_flag, 
+      create_time, create_user_id, is_enabled
+      )
+    values (#{actionId,jdbcType=BIGINT}, #{actionName,jdbcType=VARCHAR}, #{actionFlag,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=BIGINT}, #{isEnabled,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.cdboost.model.MenuAction">
+    insert into l_b_menuaction
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="actionId != null">
+        action_id,
+      </if>
+      <if test="actionName != null">
+        action_name,
+      </if>
+      <if test="actionFlag != null">
+        action_flag,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="isEnabled != null">
+        is_enabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="actionId != null">
+        #{actionId,jdbcType=BIGINT},
+      </if>
+      <if test="actionName != null">
+        #{actionName,jdbcType=VARCHAR},
+      </if>
+      <if test="actionFlag != null">
+        #{actionFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="isEnabled != null">
+        #{isEnabled,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.cdboost.model.MenuAction">
+    update l_b_menuaction
+    <set>
+      <if test="actionName != null">
+        action_name = #{actionName,jdbcType=VARCHAR},
+      </if>
+      <if test="actionFlag != null">
+        action_flag = #{actionFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="isEnabled != null">
+        is_enabled = #{isEnabled,jdbcType=INTEGER},
+      </if>
+    </set>
+    where action_id = #{actionId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.cdboost.model.MenuAction">
+    update l_b_menuaction
+    set action_name = #{actionName,jdbcType=VARCHAR},
+      action_flag = #{actionFlag,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      is_enabled = #{isEnabled,jdbcType=INTEGER}
+    where action_id = #{actionId,jdbcType=BIGINT}
+  </update>
+</mapper>
